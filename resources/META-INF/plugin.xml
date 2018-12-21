@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>lermitage.intellij.extra.icons</id>
   <name>Extra Icons</name>
-  <version>0.20</version>
+  <version>0.19</version>
   <vendor email="jonathan.lermitage@gmail.com" url="https://github.com/jonathanlermitage">Jonathan Lermitage</vendor>
 
   <description><![CDATA[
@@ -22,7 +22,7 @@
   </change-notes>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="183.0"/>
+  <idea-version since-build="173.0"/>
 
   <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
        on how to target different products -->
@@ -30,21 +30,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
-    <iconProvider
-		    id="genericIconProvider"
-		    order="first"
-		    implementation="lermitage.intellij.extra.icons.ExtraIconProvider"/>
+    <iconProvider implementation="lermitage.intellij.extra.icons.ExtraIconProvider" order="first"/>
   </extensions>
-
-  <!--
-    IMPORTANT
-    To override test-files icons the icon provider must be ordered as "first".
-    In this particular case I ordered first both the Javascript one and the Angular2+ one.
-    That's because both define a test-related icon and the order can be undefined between each other.
-  -->
-  <depends optional="true" config-file="sass.xml">org.jetbrains.plugins.sass</depends>
-  <depends optional="true" config-file="javascript.xml">JavaScript</depends>
-  <depends optional="true" config-file="angular2.xml">AngularJS</depends>
 
   <actions>
     <!-- Add your actions here -->
