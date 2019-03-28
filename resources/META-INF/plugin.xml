@@ -31,6 +31,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
     <iconProvider implementation="lermitage.intellij.extra.icons.ExtraIconProvider" order="first"/>
+      <applicationService serviceImplementation="lermitage.intellij.extra.icons.cfg.SettingsService"/>
   </extensions>
 
   <actions>
