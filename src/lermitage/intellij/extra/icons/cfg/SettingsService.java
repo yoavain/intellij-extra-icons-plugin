@@ -5,6 +5,8 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import lermitage.intellij.extra.icons.ExtraIconProvider;
+import lermitage.intellij.extra.icons.Model;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -19,13 +21,22 @@ public class SettingsService implements PersistentStateComponent<SettingsService
     
     public static List<String> getDisabledModelIds() {
         List<String> disabledModelIds = ServiceManager.getService(SettingsService.class).disabledModelIds;
-        if (disabledModelIds == null) { // a malformed xml file could make disabledModelIds null
+        if (disabledModelIds == null) { // a malformed xml file could make it null
             disabledModelIds = new ArrayList<>();
         }
         return disabledModelIds;
     }
     
-    @SuppressWarnings("WeakerAccess") // the implementation of PersistentStateComponent works by serializing public fields
+    static void setDisabledModelIds(List<String> disabledModelIds) {
+        ServiceManager.getService(SettingsService.class).disabledModelIds = disabledModelIds;
+    }
+    
+    @NotNull
+    static List<Model> getAllRegisteredModels() {
+        return ExtraIconProvider.allModels();
+    }
+    
+    @SuppressWarnings("WeakerAccess") // the implementation of PersistentStateComponent works by serializing public fields, so keep it public
     public List<String> disabledModelIds = new ArrayList<>();
     
     @Override
