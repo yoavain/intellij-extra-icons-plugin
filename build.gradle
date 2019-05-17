@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.21.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.8'
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'com.github.ben-manes.versions'
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+group 'lermitage.intellij.extra.icons'
+version version
+
+sourceSets {
+    main {
+        java.srcDir 'src'
+        resources.srcDir 'resources'
+    }
+    test {
+        java.srcDir 'test'
+    }
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+    instrumentCode Boolean.valueOf(instrumentPluginCode)
+    pluginName 'Extra Icons'
+    sandboxDirectory = "${rootProject.projectDir}/.idea-sandbox"
+    updateSinceUntilBuild false
+    version ideaVersion
+}
+
+repositories {
+    mavenCentral()
+}
+
+// See https://github.com/ben-manes/gradle-versions-plugin
+dependencyUpdates.resolutionStrategy {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ['alpha', 'Alpha', 'ALPHA', 'b', 'beta', 'Beta', 'BETA', 'rc', '‌RC', 'M', 'EA', 'pr', 'atlassian'].any { qualifier ->
+                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+            }
+            if (rejected) {
+                selection.reject('Release candidate')
+            }
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

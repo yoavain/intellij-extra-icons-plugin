@@ -7,6 +7,7 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import lermitage.intellij.extra.icons.ExtraIconProvider;
 import lermitage.intellij.extra.icons.Model;
+import lermitage.intellij.extra.icons.providers.JavascriptIconProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ import java.util.List;
 
 // see http://www.jetbrains.org/intellij/sdk/docs/basics/persisting_state_of_components.html
 @State(
-        name = "ExtraIconsSettings",
-        storages = @Storage("lermitage-extra-icons.xml")
+    name = "ExtraIconsSettings",
+    storages = @Storage("lermitage-extra-icons.xml")
 )
 public class SettingsService implements PersistentStateComponent<SettingsService> {
     
@@ -33,7 +34,10 @@ public class SettingsService implements PersistentStateComponent<SettingsService
     
     @NotNull
     static List<Model> getAllRegisteredModels() {
-        return ExtraIconProvider.allModels();
+        List<Model> allModels = new ArrayList<>();
+        allModels.addAll(ExtraIconProvider.allModels());
+        allModels.addAll(JavascriptIconProvider.allModels());
+        return allModels;
     }
     
     @SuppressWarnings("WeakerAccess") // the implementation of PersistentStateComponent works by serializing public fields, so keep it public

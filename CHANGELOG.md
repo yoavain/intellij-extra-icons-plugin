@@ -8,8 +8,10 @@
 ### 1.4.0 (WIP)
 * support [Better Code Hub](https://bettercodehub.com) `.bettercodehub.yml` files. I'd like to thank the Better Code Hub team for sending me SVG files!
 * support FlyWay SQL files `.*/db/migration/.*\.sql`.
+* support APK `.apk`, `.xapk` files.
 * detect more Docker files.
 * introduce regex support.
+* switched from DevKit to Gradle workflow: you can now build plugin without IDE, and integration with online CI like Travis will be easy.
 
 ### 1.3.0 (2019/04/24)
 * support Microsoft Azure `azure-pipelines.yml` files.

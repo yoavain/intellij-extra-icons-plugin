@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>lermitage.intellij.extra.icons</id>
     <name>Extra Icons</name>
-    <version>1.4.0.173</version>
+    <version>REPLACED_BY_GRADLE</version>
     <vendor email="jonathan.lermitage@gmail.com" url="https://github.com/jonathanlermitage">Jonathan Lermitage</vendor>
 
     <description><![CDATA[
@@ -22,8 +22,10 @@
     <ul>
         <li>support Better Code Hub <i>.bettercodehub.yml</i> files. I'd like to thank the Better Code Hub team for sending me SVG files!</li>
         <li>support FlyWay SQL files <i>.*/db/migration/.*\.sql</i>.</li>
+        <li>support APK <i>.apk</i>, <i>.xapk</i> files.</li>
         <li>detect more Docker files.</li>
         <li>introduce regex support.</li>
+        <li>switched from DevKit to Gradle workflow: you can now build plugin without IDE, and integration with online CI like Travis will be easy.</li>
     </ul>
     1.3.0 (2019/04/24)
     <ul>
@@ -71,7 +73,10 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <iconProvider implementation="lermitage.intellij.extra.icons.ExtraIconProvider" order="first"/>
+        <iconProvider
+            id="genericIconProvider"
+            order="first"
+            implementation="lermitage.intellij.extra.icons.ExtraIconProvider"/>
         <applicationService serviceImplementation="lermitage.intellij.extra.icons.cfg.SettingsService"/>
         <applicationConfigurable instance="lermitage.intellij.extra.icons.cfg.SettingsForm" id="LermitageExtraIcons" displayName="Extra Icons" parentId="appearance"/>
     </extensions>

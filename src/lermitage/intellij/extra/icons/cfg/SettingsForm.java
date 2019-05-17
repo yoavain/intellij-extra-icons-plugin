@@ -39,6 +39,12 @@ public class SettingsForm implements Configurable {
     
     @Nullable
     @Override
+    public String getHelpTopic() {
+        return null;
+    }
+    
+    @Nullable
+    @Override
     public JComponent createComponent() {
         initComponents();
         return pane;
@@ -99,10 +105,10 @@ public class SettingsForm implements Configurable {
         });
         List<String> disabledModelIds = SettingsService.getDisabledModelIds();
         allRegisteredModels.forEach(m -> settingsTableModel.addRow(new Object[]{
-                IconLoader.getIcon(m.getIcon()),
-                !disabledModelIds.contains(m.getId()),
-                m.getDescription(),
-                m.getId()})
+            IconLoader.getIcon(m.getIcon()),
+            !disabledModelIds.contains(m.getId()),
+            m.getDescription(),
+            m.getId()})
         );
         table.setModel(settingsTableModel);
         table.setRowHeight(28);
