@@ -7,7 +7,6 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import lermitage.intellij.extra.icons.ExtraIconProvider;
 import lermitage.intellij.extra.icons.Model;
-import lermitage.intellij.extra.icons.providers.JavascriptIconProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ public class SettingsService implements PersistentStateComponent<SettingsService
     static List<Model> getAllRegisteredModels() {
         List<Model> allModels = new ArrayList<>();
         allModels.addAll(ExtraIconProvider.allModels());
-        allModels.addAll(JavascriptIconProvider.allModels());
         return allModels;
     }
     
