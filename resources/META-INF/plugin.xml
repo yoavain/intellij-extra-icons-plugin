@@ -67,11 +67,16 @@
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.vcs</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <iconProvider
-            id="genericIconProvider"
+            id="extraIconsIconProvider"
+            order="first"
+            implementation="lermitage.intellij.extra.icons.ExtraIconProvider"/>
+        <openapi.vcs.changes.ui.filePathIconProvider
+            id="extraIconsFilePathIconProvider"
             order="first"
             implementation="lermitage.intellij.extra.icons.ExtraIconProvider"/>
         <applicationService serviceImplementation="lermitage.intellij.extra.icons.cfg.services.impl.SettingsIDEService" />
