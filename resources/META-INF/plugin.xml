@@ -24,6 +24,7 @@
     1.28.0 (2020/05/23)
     <ul>
       <li>support Composer <i>composer.json</i> and <i>composer.lock</i> files.</li>
+      <li><i>IDE 2020.1+ (201.5239+ builds):</i> implement <a href="https://github.com/jonathanlermitage/intellij-extra-icons-plugin/issues/28">#28</a> show customized icons in Repositories tool window.</li>
     </ul>
     1.27.0 (2020/05/15)
     <ul>
